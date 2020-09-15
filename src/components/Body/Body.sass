@@ -1,12 +1,23 @@
 @import '../../styles/partials'
     
-.card-container 
-    box-shadow: 0 1px 2px rgba(0,0,0,.1) 
+.card-shadow
+    box-shadow: $card-shadow
 
 .card-title
     font-family: $poppins-med
+    font-size: 1.25rem
+
+.greeting-title
     border-bottom: 2px solid $secondary-color
 
-@media screen and (max-width: 990px)
-    .center-align
-        margin: auto
+.mg-top
+    margin-top: $row-mg
+
+.big-counter
+    font-size: 30px
+
+@media screen and (max-width: $lg-bp)
+    .sidebar
+        margin-top: $row-mg
+
+

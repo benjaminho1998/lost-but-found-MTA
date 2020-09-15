@@ -1,13 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.sass';
 import Body from '../Body/Body';
 import NavHeader from '../NavHeader/NavHeader';
+import axios from 'axios';
+import { Switch, Route } from 'react-router-dom';
+import Category from '../Category/Category';
 
 const App = () => {
+
+  const url = '/data';
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+      axios.get(url)
+          .then((res) => {
+              setData(data.concat(res.data));
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+  }, [])
+
+  console.log(data);
+
+  //TODO: Figure out how to alphabetize categories and why entertainment doesn't show anything
   return (
     <div>
-      <NavHeader />
-      <Body />
+      {data[0] &&
+        <div>
+          <NavHeader categories={data[0].LostProperty.Category}/>
+          <Switch>
+            <Route exact path="/" render={(props) => <Body {...props} data={data} />} />
+            {data[0].LostProperty.Category.map((category, i) => 
+              <Route key={i} path={"/" + category.Category} render={(props) => <Category {...props} title={category.Category} subCatArr={category.SubCategory} />} />
+            )} 
+          </Switch>
+        </div>
+      }
     </div>
   );
 }

@@ -21,5 +21,17 @@ app.get('/data', (req, res) => {
   )
 });
 
+app.get('/weather', (req, res) => {
+  request(
+    { url: 'http://api.openweathermap.org/data/2.5/weather?q=New%20York%20City&appid=b8cedfac1134c2a5008ccbe84ebddbea' },
+    (error, response, body) => {
+      if (error || response.statusCode !== 200) {
+        return res.status(500).json({ type: 'error', message: error.message });
+      }
+      res.json(JSON.parse(body));
+    }
+  )
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`listening on ${PORT}`));

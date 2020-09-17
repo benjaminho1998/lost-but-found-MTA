@@ -1,21 +1,32 @@
-@import '../../styles/partials'
+@import '../../styles/variables'
 
 .navbar-container
-    background-color: $secondary-color
+    background-color: $white
     height: 60px
     font-size: 16px
     font-family: $poppins-med
+    box-shadow: 0 1px 5px #888888;
+
+.dropdown-menu 
+  max-height: 80vh
+  overflow-y: auto
+
+  @media screen and (max-width: $lg-bp)
+      max-height: 60vh
+
+.logo-container
+    cursor: pointer
+    color: $gray-header
+
+.logo-container:hover
+    color: $black
 
 @media screen and (max-width: $lg-bp)
-    .drop-white
-        background-color: $white
-    
-    .navbar-nav
-        margin-right: 100%
-        background-color: $white
+    .navbar-collapse
         margin-top: 15px
-
-    
+        background-color: $white
+        padding-left: 10px
+        box-shadow: $card-shadow
 
 
 

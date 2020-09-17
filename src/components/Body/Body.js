@@ -1,23 +1,26 @@
 import React from 'react';
 import Card  from 'react-bootstrap/Card';
-import { Container, Row, Col } from 'react-bootstrap'
-import './Body.sass'
+import { Container, Row, Col } from 'react-bootstrap';
+import './Body.sass';
+import Featured from '../Featured/Featured';
+import SideBar from '../Sidebar/Sidebar';
 
 
 const Body = (props) => {
     const data = props.data;
     console.log("data", data);
-    
+    // FFDAC1
     const renderGreeting = ( 
         <Card className="card-shadow">
             <Card.Header className="card-title" style={{backgroundColor: "#FFDAC1"}}>
                 MTA Lost and Found Tracker
             </Card.Header>
-            <Card.Body>
+            <Card.Body> 
                 <Card.Text>
-                    Every year, millions of personal belongings are lost on New York City's Metropolitan Transportation Authority (MTA). Thankfully, many items are turned into the system's lost and found service. This website tracks every subcategory of those items and their counts.
+                    Every year, millions of personal belongings are lost on New York City's Metropolitan Transportation Authority (MTA). Thankfully, many items are turned into the system's lost and found service. This website tracks every subcategory of those items and their counts. Use the menu above to choose a category.
                 </Card.Text>
             </Card.Body>
+            <Card.Img variant="bottom" src="https://images.unsplash.com/photo-1542168300-b6d2279063af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"></Card.Img>
         </Card>
     );
 
@@ -51,23 +54,13 @@ const Body = (props) => {
         </div>
     );
 
-    const renderSideBar = (
-        <div>
-            <Card className="card-shadow sidebar" style={{backgroundColor: "#F1F2F4"}}>
-                <Card.Header className="card-title">
-                    Filler:
-                </Card.Header>
-                <Card.Body>
-                    <Card.Text>
-                        Filler
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-        </div>
-    );
-
     return (
-        <Container>
+        <Container className="body-container">
+            <Row>
+                <Col>
+                    <p className="title">Overview</p>
+                </Col>
+            </Row>
             <Row>
                 <Col lg="8">
                     <Row>
@@ -85,11 +78,13 @@ const Body = (props) => {
                     </Row>
                 </Col>
                 <Col lg="4">
-                    {renderSideBar}
+                    <SideBar />
                 </Col>
-                <Col>
-                    hi
-                </Col>
+            </Row>
+            <Row>
+                <div className="feature-container"> 
+                    <Featured data={data} />
+                </div>
             </Row>
         </Container>
     );

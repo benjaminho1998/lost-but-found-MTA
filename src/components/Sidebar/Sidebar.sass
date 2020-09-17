@@ -1,0 +1,32 @@
+@import '../../styles/_variables'
+@import '../../styles/_mixins'
+    
+.live-video
+    width: 100%
+
+.pin
+    padding-bottom: 5px
+
+.weather-body
+    font-size: 18px
+
+@media screen and (max-width: $lg-bp)
+    .sidebar
+        margin-top: $row-mg
+    
+    .live-video
+        height: 375px
+
+@media screen and (min-width: $lg-bp)
+    .live-video
+        height: 210px
+
+.card-shadow
+    @include card-shadow
+
+.card-title
+    @include card-title
+
+
+    
+

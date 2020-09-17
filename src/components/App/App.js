@@ -23,16 +23,15 @@ const App = () => {
 
   console.log(data);
 
-  //TODO: Figure out how to alphabetize categories and why entertainment doesn't show anything
   return (
-    <div>
+    <div className="app-container">
       {data[0] &&
         <div>
           <NavHeader categories={data[0].LostProperty.Category}/>
           <Switch>
             <Route exact path="/" render={(props) => <Body {...props} data={data} />} />
             {data[0].LostProperty.Category.map((category, i) => 
-              <Route key={i} path={"/" + category.Category} render={(props) => <Category {...props} title={category.Category} subCatArr={category.SubCategory} />} />
+              <Route key={i} path={"/" + category.Category.replace(/[()]/g, '')} render={(props) => <Category {...props} title={category.Category} subCatArr={category.SubCategory} />} />
             )} 
           </Switch>
         </div>

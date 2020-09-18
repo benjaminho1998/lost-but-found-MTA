@@ -10,20 +10,10 @@ const Body = (props) => {
     const data = props.data;
     const renderGreeting = ( 
         <div>
-        {/* <Card className="card-shadow">
-            <Card.Header className="card-title" style={{backgroundColor: "#FFDAC1"}}> */}
-                {/* MTA Lost and Found Tracker */}
-            {/* </Card.Header>
-            <Card.Body> 
-                <Card.Text> */}
-                <div className="greeting">
-                    Every year, millions of personal belongings are lost on New York City's Metropolitan Transportation Authority (MTA). Thankfully, many items are turned into the system's lost and found service. This website tracks every subcategory of those items and their counts. Use the menu above to choose a category.
-                </div>
-                {/* </Card.Text>
-            </Card.Body>
-            <Card.Img variant="bottom" src="https://images.unsplash.com/photo-1542168300-b6d2279063af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"></Card.Img> */}
-            <img className="img" src="https://images.unsplash.com/photo-1542168300-b6d2279063af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"/>
-        {/* </Card> */}
+            <div className="greeting">
+                Every year, millions of personal belongings are lost on New York City's Metropolitan Transportation Authority (MTA). Thankfully, many items are turned into the system's lost and found service. This website tracks every subcategory of those items and their counts. Use the menu above to choose a category.
+            </div>
+            <img className="img" alt="NYC Subway" src="https://images.unsplash.com/photo-1542168300-b6d2279063af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"/>
         </div>
     );
 

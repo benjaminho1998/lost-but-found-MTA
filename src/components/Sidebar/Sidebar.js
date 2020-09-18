@@ -5,39 +5,61 @@ import axios from 'axios';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const SideBar = () => {
-    const [weather, setWeather] = useState(null);
-    const url = "/weather"
+    const [responses, setResponses] = useState({ weather: null, news: null});
+    const weatherUrl = "/weather";
+    const newsUrl = "/news";
+    const numberOfNews = 3;
     let temp = '';
-    let weatherDesc = '';
+    let iconID = '';
+    let newsArray = null;
 
-    useEffect(() => {
-        axios.get(url)
-            .then((res) => {
-                setWeather(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }, [])
+    const getWeather = () => axios.get(weatherUrl);
+    const getNews = () => axios.get(newsUrl);
 
-    //41b4f2a8284d4a6392f9c64f299d8241
+    useEffect (() => {
+        const fetchData = async () => {
+            const weatherRes = await getWeather();
+            const newsRes = await getNews();
+            setResponses({
+                weather: weatherRes.data, 
+                news: newsRes.data, 
+            });
+        }
+        fetchData();
+    }, []);
 
-    function capitalize(description) {
-        const str = description.charAt(0).toUpperCase() + description.slice(1, description.length);
-        return str;
+    if(responses.weather) {
+        temp = Math.round((responses.weather.main.temp - 273.15) * 1.8 + 32);
+        iconID = responses.weather.weather[0].icon;
     }
 
-    if(weather) {
-        console.log(weather);
-        weatherDesc = capitalize(weather.weather[0].description);
-        temp = Math.round((weather.main.temp - 273.15) * 1.8 + 32);
+    const randomNumber = (min, max) => {
+        return Math.floor(Math.random() * (max-min) + min);
+    }
+
+    const createNewsArray = () => {
+        const arr = [...responses.news.articles];
+        let newsArray = [];
+        for(let i = 0; i < numberOfNews; i++) {
+            const index = randomNumber(0, arr.length);
+            if(newsArray.includes(arr[index])) {
+                i--;
+            } else {
+                newsArray.push(arr[index])
+            }
+        }
+        return newsArray;
+    }
+
+    if(responses.news) {
+        newsArray = createNewsArray();
     }
 
     return (
         <div>
              <Card className="card-shadow sidebar" style={{backgroundColor: "#F1F2F4"}}>
                  <Card.Header className="card-title">
-                     News and Weather
+                     Weather and News
                  </Card.Header>
                 <iframe 
                     className="live-video" src="https://www.youtube.com/embed/mRe-514tGMg" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen title="Times Square Livestream">
@@ -47,10 +69,20 @@ const SideBar = () => {
                         <span className="card-title">New York City</span>
                         <LocationOnIcon fontSize="large" className="pin" /> <br></br>
                         <span className="weather-body">
-                            {weatherDesc} <br></br>
+                            <img className="icon" src={`http://openweathermap.org/img/wn/${iconID}.png`} alt="weather icon"></img>
                             <strong>{temp}</strong>°F
                         </span> <br></br> <br></br>
                         <span className="card-title">Trending News</span>
+                        {newsArray && newsArray.map((article, i) => 
+                            <div key={i} className="article-container">
+                                <div>
+                                    <strong>{article.source.name}</strong>
+                                </div>
+                                <a className="news-link" target="_blank" rel="noopener noreferrer" href={article.url}>
+                                    {article.title}
+                                </a>
+                            </div>
+                        )}
                     </Card.Text>
                  </Card.Body>
              </Card>

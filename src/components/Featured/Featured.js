@@ -12,7 +12,7 @@ const Featured = (props) => {
 
     const createFeaturedArray = () => {
         const categoryArray = [...data[0].LostProperty.Category]
-        let featuredArray = []
+        let featuredArray = [];
         for(let i = 0; i < numberOfFeatured; i++) {
             const categoryIndex = randomNumber(0, categoryArray.length);
             const subCategoryIndex = randomNumber(0, categoryArray[categoryIndex].SubCategory.length)

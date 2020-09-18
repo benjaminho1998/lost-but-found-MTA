@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './App.sass';
 import Body from '../Body/Body';
 import NavHeader from '../NavHeader/NavHeader';
 import axios from 'axios';
@@ -20,8 +19,6 @@ const App = () => {
               console.log(err);
           })
   }, [])
-
-  console.log(data);
 
   return (
     <div className="app-container">

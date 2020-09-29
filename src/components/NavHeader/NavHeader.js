@@ -6,8 +6,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 const NavHeader = (props) => {
     const categories = props.categories;
-    const contactUrl = "https://new.mta.info/lost-and-found/subway-bus-and-staten-island-railway/contact-lost-and-found"
-    const guideUrl = "https://new.mta.info/lost-and-found/subway-bus-and-staten-island-railway/step-by-step"
+    const contactUrl = "https://new.mta.info/lost-and-found/subway-bus-and-staten-island-railway/contact-lost-and-found";
+    const guideUrl = "https://new.mta.info/lost-and-found/subway-bus-and-staten-island-railway/step-by-step";
 
     return (
         <Navbar className="navbar-container poppins-font" fixed="top" collapseOnSelect expand="lg" variant="light">

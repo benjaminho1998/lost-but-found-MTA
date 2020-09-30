@@ -6,8 +6,8 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const SideBar = () => {
     const [responses, setResponses] = useState({ weather: null, news: null});
-    const weatherUrl = "/weather";
-    const newsUrl = "/news";
+    const weatherUrl = "http://lbfbackend.herokuapp.com/weather";
+    const newsUrl = "http://lbfbackend.herokuapp.com/news";
     const numberOfNews = 3;
     let temp = '';
     let iconID = '';

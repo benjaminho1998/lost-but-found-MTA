@@ -7,7 +7,7 @@ import Category from '../Category/Category';
 
 const App = () => {
 
-  const url = '/data';
+  const url = 'http://lbfbackend.herokuapp.com/data';
   const [data, setData] = useState([]);
 
   useEffect(() => {
